@@ -61,7 +61,7 @@ class QuestionViewTests(TestCase):
             ['<Question: Past question.>']
         )
 
-    def test_index_view_with_two_past_questions(self):
+    def test_index_view_with_multiple_past_questions(self):
         """
         The questions index page may display multiple questions in order
         starting with the most recent.
