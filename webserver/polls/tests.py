@@ -63,7 +63,8 @@ class QuestionViewTests(TestCase):
 
     def test_index_view_with_two_past_questions(self):
         """
-        The questions index page may display multiple questions.
+        The questions index page may display multiple questions in order
+        starting with the most recent.
         """
         expected_queryset = []
 
@@ -72,8 +73,10 @@ class QuestionViewTests(TestCase):
             # Generate the question_text value only
             expected_queryset.append("Past question {}.".format(i+1))
 
+            # day count gets lower/older as the list goes on to check for
+            # ordering.
             create_question(question_text=expected_queryset[i],
-                            days=-30)
+                            days=-30-i)
 
             # convert the value to the format suitable for assert comparison
             expected_queryset[i] = "<Question: " + expected_queryset[i] + \
